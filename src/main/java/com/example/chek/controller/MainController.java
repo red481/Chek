@@ -1,16 +1,13 @@
 package com.example.chek.controller;
-
-
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping
 public class MainController {
 
-        @RequestMapping("home/index")
+        @RequestMapping("/home")
         public String index() {
-            return "index";
+            return "home";
         }
 }
