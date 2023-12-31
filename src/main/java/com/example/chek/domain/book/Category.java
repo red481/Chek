@@ -1,4 +1,4 @@
-package com.example.chek.domain;
+package com.example.chek.domain.book;
 
 import jakarta.persistence.Entity;
 

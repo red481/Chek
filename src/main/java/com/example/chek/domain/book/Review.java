@@ -1,8 +1,10 @@
-package com.example.chek.domain;
+package com.example.chek.domain.book;
 
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import static jakarta.persistence.FetchType.LAZY;
 
@@ -33,7 +35,11 @@ public class Review {
     @Column(name = "soft_delete")
     private boolean softDelete;
 
-    private
+    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
+    private List<Comment> comments = new ArrayList<>();
+
+    @OneToOne(mappedBy = "review", cascade = CascadeType.ALL)
+    private MemberReviewLiked likes;
 
     private LocalDate createdDate;
     private LocalDate modifiedDate;
