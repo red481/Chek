@@ -10,24 +10,37 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/book")
 public class BookController {
 
-    @GetMapping("/{bookId}")
-    public String viewBookPage() {
-        return "book";
+//    @GetMapping("/new")
+//    public String viewAddBookForm() {
+//        return "add-book";
+//    }
+//
+//    @PostMapping("/new")
+//    public String createBookPage() {
+//        return "add-book";
+//    }
+
+//    @GetMapping("/{bookId}")
+//    public String viewBookPage() {
+//        return "book";
+//    }
+
+    @GetMapping("/new-review")
+    public String addReviewForm() {
+        return "book/reviewForm";
     }
 
-    @PostMapping{
-        public String addBook() {
-            return "book";
-        }
-    }
-    @GetMapping
-    public String getCategotyPage(@RequestParam("category") String category) {
-        return "category";
-    }
-
-
-
+//    @PostMapping("/{bookId}/new-review")
+//    public String addReviewPage() {
+//        return "redirect:/book/{bookId}";
+//    }
+//
+//
+//    @GetMapping
+//    public String getCategoryPage(@RequestParam("category") String category) {
+//        return "category";
+//    }
 
 }
 
-}
+
