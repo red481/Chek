@@ -23,14 +23,13 @@ public class Review {
     private Member member;
 
 
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "book_id")
     private Book book;
 
     @Column(name = "like_count")
     private int likeCount;
 
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "book_id")
-    private Book book;
 
     @Column(name = "soft_delete")
     private boolean softDelete;

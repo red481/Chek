@@ -10,7 +10,6 @@ import java.util.List;
 
 @Entity
 @Getter
-@Setter
 public class Book {
     @Id @GeneratedValue
     @Column(name = "book_id")
@@ -24,9 +23,16 @@ public class Book {
 
     private String summary;
 
+    @JoinColumn(name = "category_id")
     private String category;
+
+    @Column(name = "review_count")
+    private int numberOfReviews;
 
     @JsonIgnore
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
+
+    @Column(name = "soft_delete")
+    private boolean softDelete;
 }

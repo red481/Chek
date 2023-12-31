@@ -1,10 +1,11 @@
 package com.example.chek.domain.book;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.annotation.Nullable;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Comment {
 
@@ -14,11 +15,22 @@ public class Comment {
 
     private String content;
 
+    @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
+    @Column(name = "reply_level")
+    private int replyLevel;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Review review;
 
-    private Comment childComment;
+    @Nullable
+    @Column(name = "parent_comment_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Comment parentComment;
+
+    @OneToMany(mappedBy = "parentComment", cascade = CascadeType.ALL)
+    private List<Comment> childComment = new ArrayList<>();
 
     @Column(name = "soft_delete")
     private boolean softDelete;
