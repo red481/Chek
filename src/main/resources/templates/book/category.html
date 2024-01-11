@@ -10,6 +10,19 @@
 <div class="container-fluid">
 
     <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <div class="container">
+        <div class="row">
+            <th:block th:each="book, iterStat : ${page.content}">
+                <div class="col-md-4">
+                    <a href="@{/book/{id}(id=${book.id})}">[[${book.title}]]</a>
+                    <!-- 책 정보 표시 -->
+                </div>
+                <!-- 매 3개의 항목마다 새로운 행을 시작하기 위한 조건 -->
+                <div th:if="${iterStat.count % 3 == 0}" class="w-100"></div>
+            </th:block>
+        </div>
+        <!-- 페이지네이션 -->
+    </div>
     <div th:replace="fragments/footer :: footer" />
 
 </div> <!-- /container -->

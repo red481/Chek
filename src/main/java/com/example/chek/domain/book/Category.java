@@ -13,12 +13,16 @@ import java.util.List;
 public class Category {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "category_type", nullable = false)
     private CategoryType categoryType;
+
+    @Column(name = "category_name", nullable = false)
+    private String name;
 
     @OneToMany(mappedBy = "category")
     private List<Book> books = new ArrayList<>();
@@ -26,7 +30,9 @@ public class Category {
     public Category() {
     }
 
-    public Category(CategoryType categoryType) {
+    public Category(String name, CategoryType categoryType) {
+        this.name = name;
         this.categoryType = categoryType;
     }
+
 }

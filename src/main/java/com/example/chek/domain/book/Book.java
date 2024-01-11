@@ -12,20 +12,24 @@ import java.util.List;
 @Getter
 @Setter
 public class Book {
-    @Id @GeneratedValue
-    @Column(name = "book_id")
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "book_id", nullable = false)
     private Long id;
 
+    @Column(name = "book_title", nullable = false)
     private String title;
 
+    @Column(name = "book_author")
     private String author;
 
+    @Column(name = "book_isbn")
     private String isbn;
 
+    @Column(name = "book_summary")
     private String summary;
 
-    @JoinColumn(name = "category_id")
-    private String category;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Category category;
 
     @Column(name = "review_count")
     private int numberOfReviews;
@@ -34,6 +38,6 @@ public class Book {
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
 
-    @Column(name = "soft_delete")
-    private boolean softDelete;
+    public Book() {
+    }
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:replace="fragments/bodyHeader :: bodyHeader" />
+<div class="container">
+    <form th:action="@{/book/register}" th:object="${book}" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <legend>책 등록 페이지</legend>
+            <div class="mb-3 w-50">
+                <label for="title" class="form-label">책 제목</label>
+                <input type="text" id="title" class="form-control" placeholder="책 제목을 입력하세요." th:field="*{title}">
+            </div>
+            <div class="mb-3 w-50">
+                <label for="author" class="form-label">책 저자</label>
+                <input type="text" id="author" class="form-control" placeholder="책 저자를 입력하세요." th:field="*{author}">
+            </div>
+            <div class="mb-3 w-50">
+                <label for="isbn" class="form-label">책 제목</label>
+                <input type="text" id="isbn" class="form-control" placeholder="ISBN을 입력하세요." th:field="*{isbn}">
+            </div>
+            <div class="mb-3 w-25">
+                <label for="category" class="form-label">카테고리</label>
+                <select id="category" class="form-select" th:field="*{category}">
+                    <!-- 여기에 추가 옵션을 th:each를 사용하여 추가 -->
+                    <option th:value="${1}" th:text="NOVEL"></option>
+                    <option th:value="${2}" th:text="POETRY"></option>
+                    <option th:value="${3}" th:text="COMPUTER"></option>
+                    <option th:value="${4}" th:text="SCIENCE"></option>
+                </select>
+            </div>
+            <div class="input-group w-50 mb-md-3">
+                <span class="input-group-text">With textarea</span>
+                <textarea class="form-control" aria-label="With textarea" th:field="*{summary}"></textarea>
+            </div>
+            <div class="input-group mb-3 w-50">
+                <input type="file" class="form-control" id="upload" name="file">
+                <label class="input-group-text" for="upload">Upload</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </fieldset>
+    </form>
+</div>
+<div th:replace="fragments/footer :: footer" />
+</body>
+</html>

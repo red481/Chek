@@ -14,12 +14,14 @@ import static jakarta.persistence.FetchType.LAZY;
 @Getter
 @Setter
 public class Review {
-    @Id @GeneratedValue
-    @Column(name = "review_id")
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "review_id", nullable = false)
     private Long id;
 
+    @Column(name = "review_title", nullable = false)
     private String title;
 
+    @Column(name = "review_content", nullable = false)
     private String content;
 
     @ManyToOne(fetch = LAZY)
